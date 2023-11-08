@@ -1,7 +1,17 @@
 import { NavLink } from "react-router-dom";
 import Container from "../Ui/Container";
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+     const { user, logOut } = useAuth();
+     
+     const handleLogOut = () => {
+          logOut()
+          toast.success('LogOut Successfully !')
+     }
+     
+
      return (
           <div className=" bg-base-300">
                <Container>
@@ -15,7 +25,7 @@ const Navbar = () => {
                          <div className="flex-none hidden lg:block">
                               <div className="flex gap-6">
                                    {/* Navbar menu content here */}
-                                   
+
                                    <NavLink to="/" className={({ isActive, isPending }) =>
                                         isPending ? "pending" : isActive ? "text-green-500 font-bold" : "text-[#333C4D] font-bold"
                                    } >Home</NavLink>
@@ -28,9 +38,12 @@ const Navbar = () => {
                                         isPending ? "pending" : isActive ? "text-green-500 font-bold" : "text-[#333C4D] font-bold"
                                    }>Contact</NavLink>
 
-                                   <NavLink to="/login" className={({ isActive, isPending }) =>
-                                        isPending ? "pending" : isActive ? "text-green-500 font-bold" : "text-[#333C4D] font-bold"
-                                   }>Login</NavLink>
+                                   {/* conditional rendering login logout button */}
+                                   {user?.email ? <button onClick={handleLogOut} className="text-[#333C4D] font-bold">LogOut</button>
+                                        : <NavLink to="/login" className={({ isActive, isPending }) =>
+                                             isPending ? "pending" : isActive ? "text-green-500 font-bold" : "text-[#333C4D] font-bold"
+                                        }>Login</NavLink>
+                                   }
                               </div>
                          </div>
                     </div>

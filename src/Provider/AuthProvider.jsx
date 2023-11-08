@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'; // ES6
 import { createContext, useEffect, useState } from "react";
 import auth from "../Config/firebase.config";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 
 export const AuthContxt = createContext();
@@ -20,14 +20,20 @@ const AuthProvider = ({ children }) => {
           return createUserWithEmailAndPassword(auth, email, password)
      }
 
-     //* login
+     //* login user
      const login = (email, password) => {
           setIsloading(true)
           return signInWithEmailAndPassword(auth, email, password)
      }
 
+     //*logOut user
+     const logOut = () => {
+          setIsloading(true)
+          return signOut(auth);
+     }
 
-     //* state change
+
+     //* state change user
      useEffect(() => {
           const subscribe = onAuthStateChanged(auth, (crrentUser) => {
                setUser(crrentUser)
@@ -41,12 +47,12 @@ const AuthProvider = ({ children }) => {
      }, []);
 
 
-
      const valus = {
           user,
           isloading,
           creatUser,
           login,
+          logOut
      };
 
 

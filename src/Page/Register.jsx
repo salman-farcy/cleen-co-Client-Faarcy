@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 
 const Register = () => {
@@ -10,17 +11,24 @@ const Register = () => {
      //* state control component
      const [email, setEmail] = useState('');
      const [password, setPassword] = useState('');
-     
+
+     // *
+     const navigate = useNavigate()
+
      //* create user async await
-     const handleCreateUser = async(e) => {
+     const handleCreateUser = async (e) => {
           e.preventDefault();
 
-          try{
-              await creatUser(email, password);
-              console.log('Created');
+          const toastId = toast.loading('sining in...')
+
+          try {
+               await creatUser(email, password);
+               toast.success('sining in Successfully', {id : toastId})
+               navigate('/')
           }
-          catch(err) {
+          catch (err) {
                console.log(err);
+               toast.error(err.message, {id : toastId})
           }
      }
 
@@ -36,7 +44,7 @@ const Register = () => {
                                    <label className="label">
                                         <span className="label-text">Name</span>
                                    </label>
-                                   <input  type="name" name="name" placeholder="name" className="input input-bordered" required />
+                                   <input type="name" name="name" placeholder="name" className="input input-bordered" required />
                               </div>
                               <div className="form-control">
                                    <label className="label">
