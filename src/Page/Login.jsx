@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
+
 
 
 const Login = () => {
+     const {user, login} = useAuth();
+     
+     
+     
+     
+      
+
      return (
           <div className="hero min-h-screen bg-base-200">
                <div className="hero-content flex-col lg:flex-row-reverse">

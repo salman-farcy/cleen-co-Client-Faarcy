@@ -15,6 +15,7 @@ const Navbar = () => {
                          <div className="flex-none hidden lg:block">
                               <div className="flex gap-6">
                                    {/* Navbar menu content here */}
+                                   
                                    <NavLink to="/" className={({ isActive, isPending }) =>
                                         isPending ? "pending" : isActive ? "text-green-500 font-bold" : "text-[#333C4D] font-bold"
                                    } >Home</NavLink>
