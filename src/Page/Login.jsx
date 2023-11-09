@@ -28,7 +28,7 @@ const Login = () => {
               await login(email, password);
               toast.success('Logged in...',{id : toastId});
               console.log(user);
-              navigate(location?.state ? location.state : '/')
+              navigate(location?.state ? location.state : '/');
               
           }
           catch(err) {
