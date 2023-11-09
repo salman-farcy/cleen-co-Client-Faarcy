@@ -1,9 +1,16 @@
+import Container from "../Components/Ui/Container";
 
 
 const About = () => {
      return (
-          <div className="container mx-auto">
-               <h2>about</h2>
+          <div className="">
+               <Container>
+                    <h2>about</h2>
+                    <h2>about</h2>
+                    <h2>about</h2>
+                    <h2>about</h2>
+                    <h2>about</h2>
+               </Container>
           </div>
      );
 };

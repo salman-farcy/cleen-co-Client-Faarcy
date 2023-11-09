@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -13,8 +13,10 @@ const Login = () => {
      const [email, setEmail] = useState('');
      const [password, setPassword] = useState('');
 
-     //*
+     //* react huks
      const navigate = useNavigate();
+     const location = useLocation();
+     
      
      //* Login user async await
      const handleLoginUser = async(e) => {
@@ -26,7 +28,7 @@ const Login = () => {
               await login(email, password);
               toast.success('Logged in...',{id : toastId});
               console.log(user);
-              navigate('/')
+              navigate(location?.state ? location.state : '/')
               
           }
           catch(err) {

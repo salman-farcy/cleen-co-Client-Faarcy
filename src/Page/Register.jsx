@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -12,8 +12,10 @@ const Register = () => {
      const [email, setEmail] = useState('');
      const [password, setPassword] = useState('');
 
-     // *
-     const navigate = useNavigate()
+     // * react huks
+     const navigate = useNavigate();
+     const location = useLocation();
+
 
      //* create user async await
      const handleCreateUser = async (e) => {
@@ -24,7 +26,7 @@ const Register = () => {
           try {
                await creatUser(email, password);
                toast.success('sining in Successfully', {id : toastId})
-               navigate('/')
+               navigate(location?.state ? location.state : '/')
           }
           catch (err) {
                console.log(err);

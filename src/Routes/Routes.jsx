@@ -1,17 +1,19 @@
 
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
-import About from '../Page/About';
 import Contact from '../Page/Contact';
 import Login from '../Page/Login';
 import Register from '../Page/Register';
 import AdminLayout from '../Components/Layout/AdminLayout';
 import AddServices from '../Page/AddServices';
 import Home from '../Page/Home';
+import PrivateRoute from './PrivateRoute';
+import About from '../Page/About';
+
 
 const myRoutes = createBrowserRouter([
      {
-          path:'/',
+          path: '/',
           element: <App></App>,
           children: [
                {
@@ -20,7 +22,7 @@ const myRoutes = createBrowserRouter([
                },
                {
                     path: 'about',
-                    element: <About></About>
+                    element:  <PrivateRoute><About></About></PrivateRoute>  
                },
                {
                     path: 'contact',
